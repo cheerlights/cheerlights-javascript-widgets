@@ -11,6 +11,11 @@ This widget displays falling snowflakes using the CheerLights JavaScript library
 
 > [Snow CheerLights Widget](https://widgets.cheerlights.com/snow.html)
 
+## Aurora
+This widget displays a dynamic aurora inspired by the current CheerLights color.
+
+> [Aurora CheerLights Widget](https://widgets.cheerlights.com/aurora.html)
+
 ## Logo
 This widget displays the CheerLights logo.
 

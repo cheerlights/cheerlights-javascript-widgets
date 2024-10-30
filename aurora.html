@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="assets/images/CheerLights-Icon.png">
+
+    <title>CheerLights JavaScript Widget - Aurora</title>
+    <meta name="description" content="A widget that displays a dynamic aurora inspired by the current CheerLights color using the CheerLights JavaScript library." />
+
+    <style>
+      body {
+        cursor: pointer;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(0deg, rgba(0,0,0,1) 0%, var(--aurora-color) 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .aurora {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        animation: aurora 20s infinite;
+        opacity: 0.8;
+        background: linear-gradient(45deg, 
+          var(--aurora-color) 0%, 
+          transparent 70%
+        );
+        filter: blur(60px);
+      }
+
+      .aurora:nth-child(2) {
+        animation-delay: -5s;
+        transform: rotate(60deg);
+      }
+
+      .aurora:nth-child(3) {
+        animation-delay: -10s;
+        transform: rotate(-60deg);
+      }
+
+      @keyframes aurora {
+        0% {
+          transform: translate(0, -50%) rotate(0deg);
+        }
+        50% {
+          transform: translate(0, 50%) rotate(180deg);
+        }
+        100% {
+          transform: translate(0, -50%) rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="aurora"></div>
+    <div class="aurora"></div>
+    <div class="aurora"></div>
+
+    <script src="https://cdn.jsdelivr.net/gh/cheerlights/cheerlights-javascript@1.0.0/cheerlights.js"></script>
+
+    <script>
+
+        const REFRESH_INTERVAL = 5000;
+        const CHEERLIGHTS_URL = 'https://cheerlights.com/cheerlights-javascript-widgets/';
+
+
+        // get current cheerlights color
+        CheerLights.getColor(initialColor => {
+            setBodyBackgroundColor(initialColor);
+            setAuroraColor(initialColor);
+        });
+
+        // refresh cheerlights color every 5 seconds
+        setInterval(() => {
+            CheerLights.getColor(color => {
+                setBodyBackgroundColor(color);
+                setAuroraColor(color);
+            });
+        }, REFRESH_INTERVAL);
+
+        function setBodyBackgroundColor(color) {
+            if (!color || !color.htmlName) {
+                console.error('Invalid color data received');
+                return;
+            }
+            document.body.style.backgroundColor = color.htmlName;
+            document.body.title = `Current CheerLights color: ${color.htmlName}`;
+
+        }
+        
+        function setAuroraColor(color) {
+            document.documentElement.style.setProperty('--aurora-color', color.htmlName);
+        }
+
+        document.body.addEventListener('click', () => {
+            window.open(CHEERLIGHTS_URL, '_blank');
+        });
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="assets/images/CheerLights-Icon.png">
+
+    <title>CheerLights JavaScript Widget - Snow</title>
+    <meta name="description" content="A widget that displays falling snowflakes using the CheerLights JavaScript library." />
+
+    <style>
+      body {
+        cursor: pointer;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .snowflake {
+        position: fixed;
+        top: -10px;
+        color: white;
+        user-select: none;
+        cursor: default;
+        animation: fall linear forwards;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(100vh);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="https://cdn.jsdelivr.net/gh/cheerlights/cheerlights-javascript@1.0.0/cheerlights.js"></script>
+
+    <script>
+        CheerLights.getColor(setBodyBackgroundColor);
+
+        const REFRESH_INTERVAL = 5000;
+        const CHEERLIGHTS_URL = 'https://cheerlights.com/cheerlights-javascript-widgets/';
+        setInterval(() => CheerLights.getColor(setBodyBackgroundColor), REFRESH_INTERVAL);
+
+        function setBodyBackgroundColor(color) {
+            if (!color || !color.htmlName) {
+                console.error('Invalid color data received');
+                return;
+            }
+            document.body.style.backgroundColor = color.htmlName;
+        }
+
+        function createSnowflake() {
+          const snowflake = document.createElement('div');
+          snowflake.className = 'snowflake';
+          snowflake.style.left = Math.random() * 100 + '%';
+          snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+          snowflake.style.fontSize = Math.random() * 60 + 10 + 'px';
+          
+          const snowflakes = ['❄', '❅', '❆', '✵', '✶', '✷', '✸'];
+          snowflake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+          
+          snowflake.addEventListener('animationend', () => {
+            snowflake.remove();
+          });
+          
+          document.body.appendChild(snowflake);          
+        }
+
+        setInterval(createSnowflake, 200);
+
+        document.body.addEventListener('click', () => {
+            window.open(CHEERLIGHTS_URL, '_blank');
+        });
+    </script>
+
+  </body>
+</html>

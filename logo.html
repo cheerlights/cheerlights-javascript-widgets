@@ -6,20 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="assets/images/CheerLights-Icon.png">
 
-    <title>CheerLights JavaScript Widget - Solid Color</title>
-    <meta name="description" content="A widget that displays the current CheerLights color as a solid background color using the CheerLights JavaScript library." />
+    <title>CheerLights JavaScript Widget - Logo</title>
+    <meta name="description" content="A widget that displays the CheerLights logo using the CheerLights JavaScript library." />
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        #center-logo {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+    </style>
 
   </head>
 
-  <style>
-    body {
-      cursor: pointer;
-      height: 100vh;
-      margin: 0;
-    }
-  </style>
-
   <body>
+    <img src="/assets/images/CheerLights-Logo-Transparent.png" alt="CheerLights Logo" id="center-logo">
+
     <script src="https://cdn.jsdelivr.net/gh/cheerlights/cheerlights-javascript@1.0.0/cheerlights.js"></script>
 
     <script>

@@ -4,7 +4,7 @@ CheerLights JavaScript Widgets are a collection of embeddable widgets that displ
 ## Solid Color Background
 This widget displays the background color set to the latest CheerLights color.
 
-> [Solid Color Background CheerLights Widget](https://widgets.cheerlights.com/solid-color-background.html)
+> [Solid Color Background CheerLights Widget](https://widgets.cheerlights.com/color.html)
 
 ## Snow
 This widget displays falling snowflakes using the CheerLights JavaScript library.

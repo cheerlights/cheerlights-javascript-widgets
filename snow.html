@@ -10,6 +10,11 @@
     <meta name="description" content="A widget that displays falling snowflakes using the CheerLights JavaScript library." />
 
     <style>
+      :root {
+        --primary-color: white;
+        --secondary-color: oldlace;
+      }
+
       body {
         cursor: pointer;
         height: 100vh;
@@ -19,7 +24,7 @@
       .snowflake {
         position: fixed;
         top: -10px;
-        color: white;
+        color: var(--primary-color);
         user-select: none;
         cursor: default;
         animation: fall linear forwards;
@@ -37,10 +42,17 @@
     <script src="https://cdn.jsdelivr.net/gh/cheerlights/cheerlights-javascript@1.0.0/cheerlights.js"></script>
 
     <script>
-        CheerLights.getColor(setBodyBackgroundColor);
-
         const REFRESH_INTERVAL = 5000;
         const CHEERLIGHTS_URL = 'https://cheerlights.com/cheerlights-javascript-widgets/';
+
+        // get root color variable values
+        const PRIMARY_COLOR = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
+        const SECONDARY_COLOR = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color').trim();
+
+        // get current cheerlights color
+        CheerLights.getColor(setBodyBackgroundColor);
+
+        // refresh cheerlights color every 5 seconds
         setInterval(() => CheerLights.getColor(setBodyBackgroundColor), REFRESH_INTERVAL);
 
         function setBodyBackgroundColor(color) {
@@ -50,6 +62,13 @@
             }
             document.body.style.backgroundColor = color.htmlName;
             document.body.title = `Current CheerLights color: ${color.htmlName}`;
+
+            if (color.htmlName === PRIMARY_COLOR) {
+              document.documentElement.style.setProperty('--primary-color', SECONDARY_COLOR);
+            }
+            else {
+              document.documentElement.style.setProperty('--primary-color', PRIMARY_COLOR);
+            }
         }
 
         function createSnowflake() {
@@ -58,6 +77,7 @@
           snowflake.style.left = Math.random() * 100 + '%';
           snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
           snowflake.style.fontSize = Math.random() * 60 + 10 + 'px';
+          snowflake.style.opacity = Math.random() * 0.5 + 0.5;
           
           const snowflakes = ['❄', '❅', '❆', '✵', '✶', '✷', '✸'];
           snowflake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];

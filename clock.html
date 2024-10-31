@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="assets/images/CheerLights-Icon.png">
+
+    <title>CheerLights JavaScript Widget - Digital Clock</title>
+    <meta name="description" content="A widget that displays the current CheerLights color as a background color with a digital clock overlay." />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dseg7/index.css">
+  </head>
+
+  <style>
+    body {
+      cursor: pointer;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      text-align: center;
+      background-color: #000;
+    }
+    
+    .clock {
+      font-family: "DSEG7", monospace;
+      font-size: 5em;
+      font-weight: normal;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.1em;
+    }
+  </style>
+
+  <body>
+    <div class="clock" id="clock"></div>
+    
+    <script src="https://cdn.jsdelivr.net/gh/cheerlights/cheerlights-javascript@1.0.0/cheerlights.js"></script>
+    <script>
+      CheerLights.getColor(setBodyBackgroundColor);
+
+      const REFRESH_INTERVAL = 5000;
+      const CHEERLIGHTS_URL = 'https://cheerlights.com/cheerlights-javascript-widgets/';
+
+      setInterval(() => CheerLights.getColor(setBodyBackgroundColor), REFRESH_INTERVAL);
+
+      function setBodyBackgroundColor(color) {
+        if (!color || !color.htmlName) {
+          console.error('Invalid color data received');
+          return;
+        }
+        document.body.style.backgroundColor = color.htmlName;
+        document.body.title = `Current CheerLights color: ${color.htmlName}`;
+      }
+
+      document.body.addEventListener('click', () => {
+        window.open(CHEERLIGHTS_URL, '_blank');
+      });
+
+      function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const timeString = `${hours}:${minutes}:${seconds}`;
+
+        document.getElementById('clock').textContent = timeString;
+      }
+
+      setInterval(updateClock, 1000);
+      updateClock();
+    </script>
+  </body>
+</html>

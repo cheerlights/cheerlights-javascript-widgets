@@ -36,6 +36,11 @@ This widget displays a particle effect inspired by the current CheerLights color
 
 > [Particle CheerLights Widget](https://widgets.cheerlights.com/particle.html)
 
+## Digital Clock
+This widget displays a 7-segment digital clock with a background color that changes to the current CheerLights color.
+
+> [Digital Clock CheerLights Widget](https://widgets.cheerlights.com/clock.html)
+
 ## Embed CheerLights Widgets on a Home Assistant Dashboard
 
 To embed CheerLights widgets on a Home Assistant dashboard, follow these steps:

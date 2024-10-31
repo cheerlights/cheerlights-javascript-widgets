@@ -21,6 +21,11 @@ This widget displays falling snowflakes using the CheerLights JavaScript library
 
 > [Snow CheerLights Widget](https://widgets.cheerlights.com/snow.html)
 
+## Lanterns
+This widget displays lanterns using the CheerLights JavaScript library.
+
+> [Lanterns CheerLights Widget](https://widgets.cheerlights.com/lanterns.html)
+
 ## Leaves
 This widget displays falling leaves using the CheerLights JavaScript library.
 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CheerLights Visualization</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    #canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+
+  <!-- Include the CheerLights JavaScript library -->
+  <script src="https://cdn.jsdelivr.net/gh/cheerlights/cheerlights-javascript@1.0.0/cheerlights.js"></script>
+  <script>
+    const CHEERLIGHTS_URL = 'https://cheerlights.com/cheerlights-javascript-widgets/';
+
+    document.body.addEventListener('click', () => {
+        window.open(CHEERLIGHTS_URL, '_blank');
+    });
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Resize the canvas to fill the window
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Define particles
+    const particles = [];
+    const numParticles = 150;
+    let particleColor = '#ffffff';
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 1.5;
+        this.vy = (Math.random() - 0.5) * 1.5;
+        this.size = Math.random() * 9 + 1;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Wrap around edges
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+      }
+
+      draw() {
+        ctx.fillStyle = particleColor;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Initialize particles
+    for (let i = 0; i < numParticles; i++) {
+      particles.push(new Particle());
+    }
+
+    // Animation loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Function to update CheerLights color
+    function updateCheerLightsColor() {
+      CheerLights.getColor(function(color) {
+        if (color.hexValue) {
+          particleColor = color.hexValue;
+        } else {
+          console.error('Failed to retrieve CheerLights color');
+        }
+      });
+    }
+
+    // Initial color update
+    updateCheerLightsColor();
+
+    // Update the color every 5 seconds
+    const REFRESH_INTERVAL = 5000;
+    setInterval(updateCheerLightsColor, REFRESH_INTERVAL);
+
+    // Add interactivity: particles move away from mouse
+    canvas.addEventListener('mousemove', function(event) {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+
+      particles.forEach(particle => {
+        const dx = particle.x - mouseX;
+        const dy = particle.y - mouseY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 100) {
+          const angle = Math.atan2(dy, dx);
+          particle.vx += Math.cos(angle);
+          particle.vy += Math.sin(angle);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -16,8 +16,13 @@ This widget displays a dynamic aurora inspired by the current CheerLights color.
 
 > [Aurora CheerLights Widget](https://widgets.cheerlights.com/aurora.html)
 
+## Particle
+This widget displays a particle effect inspired by the current CheerLights color. Move your mouse over the widget to interact with it.
+
+> [Particle CheerLights Widget](https://widgets.cheerlights.com/particle.html)
+
 ## Logo
-This widget displays the CheerLights logo.
+This widget displays the CheerLights logo with a background color that changes to the current CheerLights color.
 
 > [Logo CheerLights Widget](https://widgets.cheerlights.com/logo.html)
 

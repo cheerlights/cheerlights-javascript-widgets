@@ -21,10 +21,15 @@ This widget displays a particle effect inspired by the current CheerLights color
 
 > [Particle CheerLights Widget](https://widgets.cheerlights.com/particle.html)
 
-## Logo
+## CheerLights Logo
 This widget displays the CheerLights logo with a background color that changes to the current CheerLights color.
 
-> [Logo CheerLights Widget](https://widgets.cheerlights.com/logo.html)
+> [CheerLights Logo CheerLights Widget](https://widgets.cheerlights.com/logo.html)
+
+## FearLights Logo
+This widget displays the FearLights logo with a background color that changes to the current CheerLights color. This is a Halloween-themed widget.
+
+> [FearLights Logo CheerLights Widget](https://widgets.cheerlights.com/fearlights.html)
 
 ## Embed CheerLights Widgets on a Home Assistant Dashboard
 

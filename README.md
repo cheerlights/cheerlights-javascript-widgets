@@ -72,3 +72,12 @@ To embed CheerLights widgets on a Home Assistant dashboard, follow these steps:
    Click on the "Save" button to save the new card to your dashboard.
 
 ![Home Assistant Dashboard](screenshots/home-assistant-snow.png)
+
+## Embed CheerLights Widgets on a WordPress Site
+
+To embed CheerLights widgets on a WordPress site, follow these steps:
+
+1. Add a new block
+2. Search for “Shortcode”
+3. Copy iframe code and adjust the src, width, and height as needed
+

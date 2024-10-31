@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="assets/images/CheerLights-Icon.png">
+
+    <title>CheerLights JavaScript Widget - Logo</title>
+    <meta name="description" content="A widget that displays the CheerLights logo with a background color that changes to the current CheerLights color using the CheerLights JavaScript library." />
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        #center-logo {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+    </style>
+
+  </head>
+
+  <body>
+    <img src="/assets/images/lanterns.png" alt="Lanterns" id="center-logo">
+
+    <script src="https://cdn.jsdelivr.net/gh/cheerlights/cheerlights-javascript@1.0.0/cheerlights.js"></script>
+
+    <script>
+        CheerLights.getColor(setBodyBackgroundColor);
+
+        const REFRESH_INTERVAL = 5000;
+        const CHEERLIGHTS_URL = 'https://cheerlights.com/cheerlights-javascript-widgets/';
+
+        setInterval(() => CheerLights.getColor(setBodyBackgroundColor), REFRESH_INTERVAL);
+
+        function setBodyBackgroundColor(color) {
+            if (!color || !color.htmlName) {
+                console.error('Invalid color data received');
+                return;
+            }
+            document.body.style.backgroundColor = color.htmlName;
+            document.body.title = `Current CheerLights color: ${color.htmlName}`;
+        }
+
+        document.body.addEventListener('click', () => {
+            window.open(CHEERLIGHTS_URL, '_blank');
+        });
+    </script>
+
+  </body>
+</html>

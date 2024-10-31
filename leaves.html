@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="assets/images/CheerLights-Icon.png">
+
+    <title>CheerLights JavaScript Widget - Leaves</title>
+    <meta name="description" content="A widget that displays falling leaves using the CheerLights JavaScript library." />
+
+    <style>
+      body {
+        cursor: pointer;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .leaf {
+        position: fixed;
+        top: -10px;
+        user-select: none;
+        cursor: default;
+        animation: fall linear forwards;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(0) translateX(0) rotate(0deg);
+        }
+        25% {
+          transform: translateY(25vh) translateX(10vw) rotate(15deg);
+        }
+        50% {
+          transform: translateY(50vh) translateX(-10vw) rotate(-15deg);
+        }
+        75% {
+          transform: translateY(75vh) translateX(10vw) rotate(10deg);
+        }
+        100% {
+          transform: translateY(100vh) translateX(0) rotate(0deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="https://cdn.jsdelivr.net/gh/cheerlights/cheerlights-javascript@1.0.0/cheerlights.js"></script>
+
+    <script>
+        const REFRESH_INTERVAL = 5000;
+        const CHEERLIGHTS_URL = 'https://cheerlights.com/cheerlights-javascript-widgets/';
+
+        CheerLights.getColor(setBodyBackgroundColor);
+
+        setInterval(() => CheerLights.getColor(setBodyBackgroundColor), REFRESH_INTERVAL);
+
+        function setBodyBackgroundColor(color) {
+            if (!color || !color.htmlName) {
+                console.error('Invalid color data received');
+                return;
+            }
+            document.body.style.backgroundColor = color.htmlName;
+            document.body.title = `Current CheerLights color: ${color.htmlName}`;
+        }
+
+        function createLeaf() {
+          const leaf = document.createElement('div');
+          leaf.className = 'leaf';
+          leaf.style.left = Math.random() * 100 + '%';
+          leaf.style.animationDuration = Math.random() * 5 + 5 + 's';
+          leaf.style.fontSize = Math.random() * 60 + 10 + 'px';
+          leaf.style.opacity = Math.random() * 0.5 + 0.5;
+          
+          const leaves = ['🍂', '🍁'];
+          leaf.innerHTML = leaves[Math.floor(Math.random() * leaves.length)];
+          
+          leaf.addEventListener('animationend', () => {
+            leaf.remove();
+          });
+          
+          document.body.appendChild(leaf);          
+        }
+
+        setInterval(createLeaf, 300);
+
+        document.body.addEventListener('click', () => {
+            window.open(CHEERLIGHTS_URL, '_blank');
+        });
+    </script>
+
+  </body>
+</html>

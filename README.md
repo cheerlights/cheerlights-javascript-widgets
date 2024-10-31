@@ -6,10 +6,25 @@ This widget displays the background color set to the latest CheerLights color.
 
 > [Solid Color Background CheerLights Widget](https://widgets.cheerlights.com/color.html)
 
+## CheerLights Logo
+This widget displays the CheerLights logo with a background color that changes to the current CheerLights color.
+
+> [CheerLights Logo CheerLights Widget](https://widgets.cheerlights.com/logo.html)
+
+## FearLights Logo
+This widget displays the FearLights logo with a background color that changes to the current CheerLights color. This is a Halloween-themed widget.
+
+> [FearLights Logo CheerLights Widget](https://widgets.cheerlights.com/fearlights.html)
+
 ## Snow
 This widget displays falling snowflakes using the CheerLights JavaScript library.
 
 > [Snow CheerLights Widget](https://widgets.cheerlights.com/snow.html)
+
+## Leaves
+This widget displays falling leaves using the CheerLights JavaScript library.
+
+> [Leaves CheerLights Widget](https://widgets.cheerlights.com/leaves.html)
 
 ## Aurora
 This widget displays a dynamic aurora inspired by the current CheerLights color.
@@ -20,16 +35,6 @@ This widget displays a dynamic aurora inspired by the current CheerLights color.
 This widget displays a particle effect inspired by the current CheerLights color. Move your mouse over the widget to interact with it.
 
 > [Particle CheerLights Widget](https://widgets.cheerlights.com/particle.html)
-
-## CheerLights Logo
-This widget displays the CheerLights logo with a background color that changes to the current CheerLights color.
-
-> [CheerLights Logo CheerLights Widget](https://widgets.cheerlights.com/logo.html)
-
-## FearLights Logo
-This widget displays the FearLights logo with a background color that changes to the current CheerLights color. This is a Halloween-themed widget.
-
-> [FearLights Logo CheerLights Widget](https://widgets.cheerlights.com/fearlights.html)
 
 ## Embed CheerLights Widgets on a Home Assistant Dashboard
 
